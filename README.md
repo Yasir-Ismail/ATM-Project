@@ -1,2 +1,79 @@
 # ATM-Project
-This is a learning based project 
+import java.util.Scanner;
+
+class ATM {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String opt = "";
+        double bal = 5000.0;
+        int pin = 1234;
+        System.out.println("Welcome to ATM");
+        System.out.print("Please Enter Your Pin: ");
+        int enterpin = sc.nextInt();
+        sc.nextLine();
+        if (pin != enterpin) {
+            System.out.println("Invalid Pin");
+            return;
+        }
+
+        System.out.println("PLease choose an option: ");
+        System.out.println("a) Change Pin");
+        System.out.println("b) Check Balance");
+        System.out.println("c) Withdraw 500");
+        System.out.println("d) Withdraw 1000");
+        System.out.println("e) Other Amount");
+        System.out.println("f) Exit");
+        opt = sc.nextLine().toLowerCase();
+
+
+        switch (opt) {
+            case "a":
+                System.out.println("Enter Your New Pin ");
+                int newpin = sc.nextInt();
+                pin = newpin;
+                System.out.println("Pin has been changed successfully");
+                break;
+            case "b":
+                System.out.println("Your Current Balance is:" + bal);
+                break;
+            case "c":
+                if (bal>500){
+                System.out.println("RS 500 Withdrawn Successfully");
+                bal -= (double)500.0F;
+                System.out.println("Your New Balance is: "+bal);
+                }
+                else {
+                    System.out.println("Insufficient Balance");
+                }
+                break;
+            case "d":
+                if (bal > 1000){
+                System.out.println("1000 Withdrawn");
+                bal -= (double)1000.0F;
+                System.out.println("Your New Balance is: "+bal);
+                }
+                else {
+                    System.out.println("Insufficient Balance");
+                }
+                break;
+            case "e":
+                System.out.println("Enter amount to withdraw:");
+                double am = sc.nextDouble();
+                if(am>bal){
+                bal = am-bal;
+                System.out.println(am + "withdrawn");
+                System.out.println("Your New Balance is: "+bal);
+                }
+                else {
+                    System.out.println("Insufficient Balance");
+                }
+            case "f":
+                System.out.println("Thank you for using this ATM");
+                break;
+            default:
+                System.out.println("Invalid Choice,Please Choose Correct Option");
+        }
+
+    }
+}
